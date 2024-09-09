@@ -1,0 +1,53 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<h1> JavaScript #2 : Data Privacy (15 Marks)</h1>
+
+<button class="btn btn-primary"  id="btn1" onclick="javascript1()" >Insert Name</button>
+<button class="btn btn-primary"  onclick="javascript_lev2()" >Slide</button>
+<button class="btn btn-primary"  id="btn2" onclick="javascript3()" disabled>Show/Hide</button>
+
+<div id="display">
+      <p id="str1" >First Name : xxxxxxx</p>
+      <p id="str2" >Last Name : xxxxxxx</p>
+      <p id="str3" >String length : xx</p>
+</div>
+
+
+<!-- Coding JavaScript 2 here!!!! -->
+<script>
+      let firstName, lastName, stringLength;
+
+      function javascript1() {
+            firstName = prompt("Please enter your First Name", "");
+            lastName = prompt("Please enter your Last Name", "");
+            stringLength = firstName.length + lastName.length;
+
+            $('#str1').text("First Name : " + firstName);
+            $('#str2').text("Last Name : " + lastName);
+            $('#str3').text("String length : " + stringLength);
+
+            $('#btn2').prop("disabled", false).text("Hide");
+      };
+
+      function javascript_lev2() {
+            $('#display').slideToggle('fast');
+      }
+
+      function javascript3() {
+            if ($('#btn2').text() == "Hide") {
+                  $('#str1').text("First Name : " + 'x'.repeat(firstName.length));
+                  $('#str2').text("Last Name : " + 'x'.repeat(lastName.length));
+                  $('#str3').text("String length : " + 'x'.repeat(stringLength.toString().length));
+
+                  $('#btn2').text("Show");
+                  
+            } else if ($('#btn2').text() == "Show") {
+                  $('#str1').text("First Name : " + firstName);
+                  $('#str2').text("Last Name : " + lastName);
+                  $('#str3').text("String length : " + stringLength);
+
+                  $('#btn2').text("Hide");
+            }
+      }
+</script>
+<!-- Coding JavaScript 2 here!!!! -->

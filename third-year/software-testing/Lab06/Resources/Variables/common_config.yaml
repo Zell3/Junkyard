@@ -1,0 +1,5 @@
+SITE: IOT
+
+BASE_URL:
+  IOT: https://reqres.in/
+  STG: https://reqres.in/

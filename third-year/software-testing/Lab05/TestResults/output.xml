@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.10.2 on win32)" generated="20240801 18:14:49.770" rpa="false" schemaversion="4">
+<suite id="s1" name="F0 Login excel" source="D:\2024\SE_Buu\Lab\Lab04\TestCases\F0_Login_excel.robot">
+<test id="s1-t1" name="F0_Login_001" line="10">
+<kw name="Prepare Data for F0_Login" library="PrepareData">
+<arg>${EXCEL FILE}</arg>
+<arg>${SHEET NAME}</arg>
+<kw name="Open Workbook" library="RPA.Excel.Files">
+<arg>${ExcelPath}</arg>
+<doc>Open an existing Excel workbook.</doc>
+<msg timestamp="20240801 18:14:50.987" level="INFO">Opened workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x0000023CF1BD2AA0&gt;</msg>
+<status status="PASS" starttime="20240801 18:14:50.948" endtime="20240801 18:14:50.987"/>
+</kw>
+<kw name="Read Worksheet" library="RPA.Excel.Files">
+<var>${worksheet}</var>
+<arg>name=${SheetName}</arg>
+<arg>header=${TRUE}</arg>
+<doc>Read the content of a worksheet into a list of dictionaries.</doc>
+<msg timestamp="20240801 18:14:50.988" level="INFO">${worksheet} = [{'TestCaseName': 'F0_Login_001', 'Flag': 'Y', 'Username': 'admin', 'Password': 'adminpassword'}, {'TestCaseName': 'F0_Login_002', 'Flag': 'Y', 'Username': 'usertest01', 'Password': 'usertest01passwor...</msg>
+<status status="PASS" starttime="20240801 18:14:50.987" endtime="20240801 18:14:50.988"/>
+</kw>
+<for flavor="IN">
+<var>${index}</var>
+<value>@{worksheet}</value>
+<iter>
+<var name="${index}">{'TestCaseName': 'F0_Login_001', 'Flag': 'Y', 'Username': 'admin', 'Password': 'adminpassword'}</var>
+<kw name="Skip If" library="BuiltIn">
+<arg>'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='N'</arg>
+<doc>Skips the rest of the current test if the ``condition`` is True.</doc>
+<status status="PASS" starttime="20240801 18:14:50.989" endtime="20240801 18:14:50.990"/>
+</kw>
+<if>
+<branch type="IF" condition="'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='Y'">
+<kw name="Sub Prepare Data for F0_Login" library="PrepareData">
+<arg>${index}</arg>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${Username}</arg>
+<arg>${Testdata['Username']}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240801 18:14:50.993" level="INFO">${Username} = admin</msg>
+<status status="PASS" starttime="20240801 18:14:50.992" endtime="20240801 18:14:50.993"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${Password}</arg>
+<arg>${Testdata['Password']}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240801 18:14:50.994" level="INFO">${Password} = adminpassword</msg>
+<status status="PASS" starttime="20240801 18:14:50.993" endtime="20240801 18:14:50.994"/>
+</kw>
+<kw name="Generate Random Thai String" library="PrepareData">
+<kw name="Create List" library="BuiltIn">
+<var>${thai_characters}</var>
+<arg>ก</arg>
+<arg>ข</arg>
+<arg>ค</arg>
+<arg>ง</arg>
+<arg>จ</arg>
+<arg>ฉ</arg>
+<arg>ช</arg>
+<arg>ซ</arg>
+<arg>ฌ</arg>
+<arg>ญ</arg>
+<arg>ฎ</arg>
+<arg>ฐ</arg>
+<arg>ฑ</arg>
+<arg>ฒ</arg>
+<arg>ณ</arg>
+<arg>ด</arg>
+<arg>ต</arg>
+<arg>ถ</arg>
+<arg>ท</arg>
+<arg>ธ</arg>
+<arg>น</arg>
+<arg>บ</arg>
+<arg>ป</arg>
+<arg>ผ</arg>
+<arg>ฝ</arg>
+<arg>พ</arg>
+<arg>ฟ</arg>
+<arg>ภ</arg>
+<arg>ม</arg>
+<arg>ย</arg>
+<arg>ร</arg>
+<arg>ล</arg>
+<arg>ว</arg>
+<arg>ศ</arg>
+<arg>ษ</arg>
+<arg>ส</arg>
+<arg>ห</arg>
+<arg>ฬ</arg>
+<arg>อ</arg>
+<arg>ฮ</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20240801 18:14:50.994" level="INFO">${thai_characters} = ['ก', 'ข', 'ค', 'ง', 'จ', 'ฉ', 'ช', 'ซ', 'ฌ', 'ญ', 'ฎ', 'ฐ', 'ฑ', 'ฒ', 'ณ', 'ด', 'ต', 'ถ', 'ท', 'ธ', 'น', 'บ', 'ป', 'ผ', 'ฝ', 'พ', 'ฟ', 'ภ', 'ม', 'ย', 'ร', 'ล', 'ว', 'ศ', 'ษ', 'ส', 'ห', 'ฬ', 'อ', 'ฮ']</msg>
+<status status="PASS" starttime="20240801 18:14:50.994" endtime="20240801 18:14:50.994"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${random_string}</var>
+<arg>''.join(random.choice(${thai_characters}) for _ in range(${LENGTH}))</arg>
+<arg>modules=random</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240801 18:14:50.994" level="INFO">${random_string} = ซภลฝป</msg>
+<status status="PASS" starttime="20240801 18:14:50.994" endtime="20240801 18:14:50.994"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Random Thai String: ${random_string}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240801 18:14:50.995" level="INFO">Random Thai String: ซภลฝป</msg>
+<status status="PASS" starttime="20240801 18:14:50.995" endtime="20240801 18:14:50.995"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:50.994" endtime="20240801 18:14:50.995"/>
+</kw>
+<kw name="Generate Random Eng String" library="PrepareData">
+<kw name="Evaluate" library="BuiltIn">
+<var>${random_string}</var>
+<arg>''.join(random.choice('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') for _ in range(${LENGTH}))</arg>
+<arg>modules=random</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240801 18:14:50.995" level="INFO">${random_string} = xlsGZ</msg>
+<status status="PASS" starttime="20240801 18:14:50.995" endtime="20240801 18:14:50.995"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Random String: ${random_string}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240801 18:14:50.995" level="INFO">Random String: xlsGZ</msg>
+<status status="PASS" starttime="20240801 18:14:50.995" endtime="20240801 18:14:50.995"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:50.995" endtime="20240801 18:14:50.995"/>
+</kw>
+<kw name="Generate Data From Datetime" library="PrepareData">
+<kw name="Evaluate" library="BuiltIn">
+<var>${SetDatetime}</var>
+<arg>'${YYYYMMDD}'.format(dt=datetime.datetime.now())</arg>
+<arg>modules=datetime</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240801 18:14:50.996" level="INFO">${SetDatetime} = 20240801</msg>
+<status status="PASS" starttime="20240801 18:14:50.996" endtime="20240801 18:14:50.996"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Generate Data: ${SetDatetime}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240801 18:14:50.996" level="INFO">Generate Data: 20240801</msg>
+<status status="PASS" starttime="20240801 18:14:50.996" endtime="20240801 18:14:50.996"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:50.995" endtime="20240801 18:14:50.996"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:50.991" endtime="20240801 18:14:50.996"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:50.991" endtime="20240801 18:14:50.996"/>
+</branch>
+<status status="PASS" starttime="20240801 18:14:50.991" endtime="20240801 18:14:50.996"/>
+</if>
+<status status="PASS" starttime="20240801 18:14:50.988" endtime="20240801 18:14:50.996"/>
+</iter>
+<iter>
+<var name="${index}">{'TestCaseName': 'F0_Login_002', 'Flag': 'Y', 'Username': 'usertest01', 'Password': 'usertest01password'}</var>
+<kw name="Skip If" library="BuiltIn">
+<arg>'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='N'</arg>
+<doc>Skips the rest of the current test if the ``condition`` is True.</doc>
+<status status="PASS" starttime="20240801 18:14:50.996" endtime="20240801 18:14:50.997"/>
+</kw>
+<if>
+<branch type="IF" condition="'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='Y'">
+<kw name="Sub Prepare Data for F0_Login" library="PrepareData">
+<arg>${index}</arg>
+<status status="NOT RUN" starttime="20240801 18:14:50.998" endtime="20240801 18:14:50.998"/>
+</kw>
+<status status="NOT RUN" starttime="20240801 18:14:50.997" endtime="20240801 18:14:50.998"/>
+</branch>
+<status status="PASS" starttime="20240801 18:14:50.997" endtime="20240801 18:14:50.998"/>
+</if>
+<status status="PASS" starttime="20240801 18:14:50.996" endtime="20240801 18:14:50.998"/>
+</iter>
+<iter>
+<var name="${index}">{'TestCaseName': 'F0_Login_003', 'Flag': 'Y', 'Username': 'usertest02', 'Password': 'usertest02password'}</var>
+<kw name="Skip If" library="BuiltIn">
+<arg>'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='N'</arg>
+<doc>Skips the rest of the current test if the ``condition`` is True.</doc>
+<status status="PASS" starttime="20240801 18:14:50.998" endtime="20240801 18:14:50.999"/>
+</kw>
+<if>
+<branch type="IF" condition="'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='Y'">
+<kw name="Sub Prepare Data for F0_Login" library="PrepareData">
+<arg>${index}</arg>
+<status status="NOT RUN" starttime="20240801 18:14:51.000" endtime="20240801 18:14:51.000"/>
+</kw>
+<status status="NOT RUN" starttime="20240801 18:14:50.999" endtime="20240801 18:14:51.000"/>
+</branch>
+<status status="PASS" starttime="20240801 18:14:50.999" endtime="20240801 18:14:51.000"/>
+</if>
+<status status="PASS" starttime="20240801 18:14:50.998" endtime="20240801 18:14:51.000"/>
+</iter>
+<status status="PASS" starttime="20240801 18:14:50.988" endtime="20240801 18:14:51.000"/>
+</for>
+<kw name="Close Workbook" library="RPA.Excel.Files">
+<doc>Close the active workbook.</doc>
+<msg timestamp="20240801 18:14:51.000" level="INFO">Closing workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x0000023CF1BD2AA0&gt;</msg>
+<status status="PASS" starttime="20240801 18:14:51.000" endtime="20240801 18:14:51.000"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:50.948" endtime="20240801 18:14:51.000"/>
+</kw>
+<kw name="Open Seminar" library="common">
+<arg>${WEB.${SITE}}</arg>
+<arg>${BROWSER}</arg>
+<kw name="Open Browser" library="Selenium2Library">
+<arg>${url}</arg>
+<arg>${run_browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240801 18:14:51.002" level="INFO">Opening browser 'chrome' to base url 'https://se.buu.ac.th/test_seminar/'.</msg>
+<status status="PASS" starttime="20240801 18:14:51.002" endtime="20240801 18:14:54.837"/>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240801 18:14:54.838" endtime="20240801 18:14:54.959"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:51.001" endtime="20240801 18:14:54.959"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${lbl_Login}</arg>
+<arg>${wait_state_timeout}</arg>
+<arg>Failed, Automated Can't visible Element.</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240801 18:14:54.960" endtime="20240801 18:14:54.985"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${txt_unidentifier}</arg>
+<arg>${wait_state_timeout}</arg>
+<arg>Failed, Automated Can't visible Element.</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240801 18:14:54.985" endtime="20240801 18:14:55.009"/>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<arg>${txt_unidentifier}</arg>
+<arg>${Username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240801 18:14:55.011" level="INFO">Typing text 'admin' into text field 'xpath=//input[@name="username"]'.</msg>
+<status status="PASS" starttime="20240801 18:14:55.009" endtime="20240801 18:14:55.089"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${txt_pwidentifier}</arg>
+<arg>${wait_state_timeout}</arg>
+<arg>Failed, Automated Can't visible Element.</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240801 18:14:55.090" endtime="20240801 18:14:55.111"/>
+</kw>
+<kw name="Input Password" library="Selenium2Library">
+<arg>${txt_pwidentifier}</arg>
+<arg>${Password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20240801 18:14:55.114" level="INFO">Typing password into text field 'xpath=//input[@name="password"]'.</msg>
+<msg timestamp="20240801 18:14:55.146" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20240801 18:14:55.192" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20240801 18:14:55.112" endtime="20240801 18:14:55.192"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${btn_login}</arg>
+<arg>${wait_state_timeout}</arg>
+<arg>Failed, Automated Can't visible Element.</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240801 18:14:55.195" endtime="20240801 18:14:55.216"/>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<arg>${btn_login}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240801 18:14:55.217" level="INFO">Clicking element 'xpath=//input[@type="submit"]'.</msg>
+<status status="PASS" starttime="20240801 18:14:55.216" endtime="20240801 18:14:57.041"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${lbl_menu}</arg>
+<arg>${wait_state_timeout}</arg>
+<arg>Failed, Automated Can't Login.</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240801 18:14:57.042" endtime="20240801 18:14:57.074"/>
+</kw>
+<kw name="Close Browser Seminar" library="common" type="TEARDOWN">
+<kw name="Close Browser" library="Selenium2Library">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20240801 18:14:57.077" endtime="20240801 18:14:59.719"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:57.076" endtime="20240801 18:14:59.719"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:50.948" endtime="20240801 18:14:59.719"/>
+</test>
+<test id="s1-t2" name="F0_Login_002" line="22">
+<kw name="Prepare Data for F0_Login" library="PrepareData">
+<arg>${EXCEL FILE}</arg>
+<arg>${SHEET NAME}</arg>
+<kw name="Open Workbook" library="RPA.Excel.Files">
+<arg>${ExcelPath}</arg>
+<doc>Open an existing Excel workbook.</doc>
+<msg timestamp="20240801 18:14:59.738" level="INFO">Opened workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x0000023CF3E885B0&gt;</msg>
+<status status="PASS" starttime="20240801 18:14:59.727" endtime="20240801 18:14:59.739"/>
+</kw>
+<kw name="Read Worksheet" library="RPA.Excel.Files">
+<var>${worksheet}</var>
+<arg>name=${SheetName}</arg>
+<arg>header=${TRUE}</arg>
+<doc>Read the content of a worksheet into a list of dictionaries.</doc>
+<msg timestamp="20240801 18:14:59.740" level="INFO">${worksheet} = [{'TestCaseName': 'F0_Login_001', 'Flag': 'Y', 'Username': 'admin', 'Password': 'adminpassword'}, {'TestCaseName': 'F0_Login_002', 'Flag': 'Y', 'Username': 'usertest01', 'Password': 'usertest01passwor...</msg>
+<status status="PASS" starttime="20240801 18:14:59.739" endtime="20240801 18:14:59.740"/>
+</kw>
+<for flavor="IN">
+<var>${index}</var>
+<value>@{worksheet}</value>
+<iter>
+<var name="${index}">{'TestCaseName': 'F0_Login_001', 'Flag': 'Y', 'Username': 'admin', 'Password': 'adminpassword'}</var>
+<kw name="Skip If" library="BuiltIn">
+<arg>'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='N'</arg>
+<doc>Skips the rest of the current test if the ``condition`` is True.</doc>
+<status status="PASS" starttime="20240801 18:14:59.740" endtime="20240801 18:14:59.741"/>
+</kw>
+<if>
+<branch type="IF" condition="'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='Y'">
+<kw name="Sub Prepare Data for F0_Login" library="PrepareData">
+<arg>${index}</arg>
+<status status="NOT RUN" starttime="20240801 18:14:59.742" endtime="20240801 18:14:59.742"/>
+</kw>
+<status status="NOT RUN" starttime="20240801 18:14:59.741" endtime="20240801 18:14:59.742"/>
+</branch>
+<status status="PASS" starttime="20240801 18:14:59.741" endtime="20240801 18:14:59.742"/>
+</if>
+<status status="PASS" starttime="20240801 18:14:59.740" endtime="20240801 18:14:59.742"/>
+</iter>
+<iter>
+<var name="${index}">{'TestCaseName': 'F0_Login_002', 'Flag': 'Y', 'Username': 'usertest01', 'Password': 'usertest01password'}</var>
+<kw name="Skip If" library="BuiltIn">
+<arg>'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='N'</arg>
+<doc>Skips the rest of the current test if the ``condition`` is True.</doc>
+<status status="PASS" starttime="20240801 18:14:59.744" endtime="20240801 18:14:59.745"/>
+</kw>
+<if>
+<branch type="IF" condition="'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='Y'">
+<kw name="Sub Prepare Data for F0_Login" library="PrepareData">
+<arg>${index}</arg>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${Username}</arg>
+<arg>${Testdata['Username']}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240801 18:14:59.746" level="INFO">${Username} = usertest01</msg>
+<status status="PASS" starttime="20240801 18:14:59.746" endtime="20240801 18:14:59.746"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${Password}</arg>
+<arg>${Testdata['Password']}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240801 18:14:59.747" level="INFO">${Password} = usertest01password</msg>
+<status status="PASS" starttime="20240801 18:14:59.746" endtime="20240801 18:14:59.747"/>
+</kw>
+<kw name="Generate Random Thai String" library="PrepareData">
+<kw name="Create List" library="BuiltIn">
+<var>${thai_characters}</var>
+<arg>ก</arg>
+<arg>ข</arg>
+<arg>ค</arg>
+<arg>ง</arg>
+<arg>จ</arg>
+<arg>ฉ</arg>
+<arg>ช</arg>
+<arg>ซ</arg>
+<arg>ฌ</arg>
+<arg>ญ</arg>
+<arg>ฎ</arg>
+<arg>ฐ</arg>
+<arg>ฑ</arg>
+<arg>ฒ</arg>
+<arg>ณ</arg>
+<arg>ด</arg>
+<arg>ต</arg>
+<arg>ถ</arg>
+<arg>ท</arg>
+<arg>ธ</arg>
+<arg>น</arg>
+<arg>บ</arg>
+<arg>ป</arg>
+<arg>ผ</arg>
+<arg>ฝ</arg>
+<arg>พ</arg>
+<arg>ฟ</arg>
+<arg>ภ</arg>
+<arg>ม</arg>
+<arg>ย</arg>
+<arg>ร</arg>
+<arg>ล</arg>
+<arg>ว</arg>
+<arg>ศ</arg>
+<arg>ษ</arg>
+<arg>ส</arg>
+<arg>ห</arg>
+<arg>ฬ</arg>
+<arg>อ</arg>
+<arg>ฮ</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20240801 18:14:59.747" level="INFO">${thai_characters} = ['ก', 'ข', 'ค', 'ง', 'จ', 'ฉ', 'ช', 'ซ', 'ฌ', 'ญ', 'ฎ', 'ฐ', 'ฑ', 'ฒ', 'ณ', 'ด', 'ต', 'ถ', 'ท', 'ธ', 'น', 'บ', 'ป', 'ผ', 'ฝ', 'พ', 'ฟ', 'ภ', 'ม', 'ย', 'ร', 'ล', 'ว', 'ศ', 'ษ', 'ส', 'ห', 'ฬ', 'อ', 'ฮ']</msg>
+<status status="PASS" starttime="20240801 18:14:59.747" endtime="20240801 18:14:59.747"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${random_string}</var>
+<arg>''.join(random.choice(${thai_characters}) for _ in range(${LENGTH}))</arg>
+<arg>modules=random</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240801 18:14:59.748" level="INFO">${random_string} = หณฐนศ</msg>
+<status status="PASS" starttime="20240801 18:14:59.747" endtime="20240801 18:14:59.748"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Random Thai String: ${random_string}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240801 18:14:59.748" level="INFO">Random Thai String: หณฐนศ</msg>
+<status status="PASS" starttime="20240801 18:14:59.748" endtime="20240801 18:14:59.748"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:59.747" endtime="20240801 18:14:59.748"/>
+</kw>
+<kw name="Generate Random Eng String" library="PrepareData">
+<kw name="Evaluate" library="BuiltIn">
+<var>${random_string}</var>
+<arg>''.join(random.choice('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') for _ in range(${LENGTH}))</arg>
+<arg>modules=random</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240801 18:14:59.748" level="INFO">${random_string} = Vslhu</msg>
+<status status="PASS" starttime="20240801 18:14:59.748" endtime="20240801 18:14:59.748"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Random String: ${random_string}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240801 18:14:59.749" level="INFO">Random String: Vslhu</msg>
+<status status="PASS" starttime="20240801 18:14:59.748" endtime="20240801 18:14:59.749"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:59.748" endtime="20240801 18:14:59.749"/>
+</kw>
+<kw name="Generate Data From Datetime" library="PrepareData">
+<kw name="Evaluate" library="BuiltIn">
+<var>${SetDatetime}</var>
+<arg>'${YYYYMMDD}'.format(dt=datetime.datetime.now())</arg>
+<arg>modules=datetime</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240801 18:14:59.749" level="INFO">${SetDatetime} = 20240801</msg>
+<status status="PASS" starttime="20240801 18:14:59.749" endtime="20240801 18:14:59.749"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Generate Data: ${SetDatetime}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240801 18:14:59.749" level="INFO">Generate Data: 20240801</msg>
+<status status="PASS" starttime="20240801 18:14:59.749" endtime="20240801 18:14:59.749"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:59.749" endtime="20240801 18:14:59.749"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:59.746" endtime="20240801 18:14:59.749"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:59.745" endtime="20240801 18:14:59.749"/>
+</branch>
+<status status="PASS" starttime="20240801 18:14:59.745" endtime="20240801 18:14:59.749"/>
+</if>
+<status status="PASS" starttime="20240801 18:14:59.743" endtime="20240801 18:14:59.749"/>
+</iter>
+<iter>
+<var name="${index}">{'TestCaseName': 'F0_Login_003', 'Flag': 'Y', 'Username': 'usertest02', 'Password': 'usertest02password'}</var>
+<kw name="Skip If" library="BuiltIn">
+<arg>'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='N'</arg>
+<doc>Skips the rest of the current test if the ``condition`` is True.</doc>
+<status status="PASS" starttime="20240801 18:14:59.750" endtime="20240801 18:14:59.750"/>
+</kw>
+<if>
+<branch type="IF" condition="'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='Y'">
+<kw name="Sub Prepare Data for F0_Login" library="PrepareData">
+<arg>${index}</arg>
+<status status="NOT RUN" starttime="20240801 18:14:59.751" endtime="20240801 18:14:59.751"/>
+</kw>
+<status status="NOT RUN" starttime="20240801 18:14:59.750" endtime="20240801 18:14:59.751"/>
+</branch>
+<status status="PASS" starttime="20240801 18:14:59.750" endtime="20240801 18:14:59.751"/>
+</if>
+<status status="PASS" starttime="20240801 18:14:59.749" endtime="20240801 18:14:59.751"/>
+</iter>
+<status status="PASS" starttime="20240801 18:14:59.740" endtime="20240801 18:14:59.751"/>
+</for>
+<kw name="Close Workbook" library="RPA.Excel.Files">
+<doc>Close the active workbook.</doc>
+<msg timestamp="20240801 18:14:59.751" level="INFO">Closing workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x0000023CF3E885B0&gt;</msg>
+<status status="PASS" starttime="20240801 18:14:59.751" endtime="20240801 18:14:59.751"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:59.726" endtime="20240801 18:14:59.751"/>
+</kw>
+<kw name="Open Seminar" library="common">
+<arg>${WEB.${SITE}}</arg>
+<arg>${BROWSER}</arg>
+<kw name="Open Browser" library="Selenium2Library">
+<arg>${url}</arg>
+<arg>${run_browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240801 18:14:59.753" level="INFO">Opening browser 'chrome' to base url 'https://se.buu.ac.th/test_seminar/'.</msg>
+<status status="PASS" starttime="20240801 18:14:59.753" endtime="20240801 18:15:04.019"/>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240801 18:15:04.019" endtime="20240801 18:15:04.132"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:59.752" endtime="20240801 18:15:04.132"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${lbl_Login}</arg>
+<arg>${wait_state_timeout}</arg>
+<arg>Failed, Automated Can't visible Element.</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240801 18:15:04.133" endtime="20240801 18:15:04.157"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${txt_unidentifier}</arg>
+<arg>${wait_state_timeout}</arg>
+<arg>Failed, Automated Can't visible Element.</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240801 18:15:04.158" endtime="20240801 18:15:04.181"/>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<arg>${txt_unidentifier}</arg>
+<arg>${Username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240801 18:15:04.182" level="INFO">Typing text 'usertest01' into text field 'xpath=//input[@name="username"]'.</msg>
+<status status="PASS" starttime="20240801 18:15:04.181" endtime="20240801 18:15:04.258"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${txt_pwidentifier}</arg>
+<arg>${wait_state_timeout}</arg>
+<arg>Failed, Automated Can't visible Element.</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240801 18:15:04.258" endtime="20240801 18:15:04.278"/>
+</kw>
+<kw name="Input Password" library="Selenium2Library">
+<arg>${txt_pwidentifier}</arg>
+<arg>${Password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20240801 18:15:04.280" level="INFO">Typing password into text field 'xpath=//input[@name="password"]'.</msg>
+<msg timestamp="20240801 18:15:04.313" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20240801 18:15:04.350" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20240801 18:15:04.278" endtime="20240801 18:15:04.350"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${btn_login}</arg>
+<arg>${wait_state_timeout}</arg>
+<arg>Failed, Automated Can't visible Element.</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240801 18:15:04.351" endtime="20240801 18:15:04.372"/>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<arg>${btn_login}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240801 18:15:04.373" level="INFO">Clicking element 'xpath=//input[@type="submit"]'.</msg>
+<status status="PASS" starttime="20240801 18:15:04.372" endtime="20240801 18:15:06.094"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${lbl_menu}</arg>
+<arg>${wait_state_timeout}</arg>
+<arg>Failed, Automated Can't Login.</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240801 18:15:06.095" endtime="20240801 18:15:06.124"/>
+</kw>
+<kw name="Close Browser Seminar" library="common" type="TEARDOWN">
+<kw name="Close Browser" library="Selenium2Library">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20240801 18:15:06.125" endtime="20240801 18:15:08.652"/>
+</kw>
+<status status="PASS" starttime="20240801 18:15:06.125" endtime="20240801 18:15:08.652"/>
+</kw>
+<status status="PASS" starttime="20240801 18:14:59.725" endtime="20240801 18:15:08.652"/>
+</test>
+<test id="s1-t3" name="F0_Login_003" line="34">
+<kw name="Prepare Data for F0_Login" library="PrepareData">
+<arg>${EXCEL FILE}</arg>
+<arg>${SHEET NAME}</arg>
+<kw name="Open Workbook" library="RPA.Excel.Files">
+<arg>${ExcelPath}</arg>
+<doc>Open an existing Excel workbook.</doc>
+<msg timestamp="20240801 18:15:08.664" level="INFO">Opened workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x0000023CF3E99960&gt;</msg>
+<status status="PASS" starttime="20240801 18:15:08.655" endtime="20240801 18:15:08.664"/>
+</kw>
+<kw name="Read Worksheet" library="RPA.Excel.Files">
+<var>${worksheet}</var>
+<arg>name=${SheetName}</arg>
+<arg>header=${TRUE}</arg>
+<doc>Read the content of a worksheet into a list of dictionaries.</doc>
+<msg timestamp="20240801 18:15:08.665" level="INFO">${worksheet} = [{'TestCaseName': 'F0_Login_001', 'Flag': 'Y', 'Username': 'admin', 'Password': 'adminpassword'}, {'TestCaseName': 'F0_Login_002', 'Flag': 'Y', 'Username': 'usertest01', 'Password': 'usertest01passwor...</msg>
+<status status="PASS" starttime="20240801 18:15:08.664" endtime="20240801 18:15:08.665"/>
+</kw>
+<for flavor="IN">
+<var>${index}</var>
+<value>@{worksheet}</value>
+<iter>
+<var name="${index}">{'TestCaseName': 'F0_Login_001', 'Flag': 'Y', 'Username': 'admin', 'Password': 'adminpassword'}</var>
+<kw name="Skip If" library="BuiltIn">
+<arg>'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='N'</arg>
+<doc>Skips the rest of the current test if the ``condition`` is True.</doc>
+<status status="PASS" starttime="20240801 18:15:08.666" endtime="20240801 18:15:08.667"/>
+</kw>
+<if>
+<branch type="IF" condition="'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='Y'">
+<kw name="Sub Prepare Data for F0_Login" library="PrepareData">
+<arg>${index}</arg>
+<status status="NOT RUN" starttime="20240801 18:15:08.669" endtime="20240801 18:15:08.669"/>
+</kw>
+<status status="NOT RUN" starttime="20240801 18:15:08.667" endtime="20240801 18:15:08.669"/>
+</branch>
+<status status="PASS" starttime="20240801 18:15:08.667" endtime="20240801 18:15:08.669"/>
+</if>
+<status status="PASS" starttime="20240801 18:15:08.665" endtime="20240801 18:15:08.669"/>
+</iter>
+<iter>
+<var name="${index}">{'TestCaseName': 'F0_Login_002', 'Flag': 'Y', 'Username': 'usertest01', 'Password': 'usertest01password'}</var>
+<kw name="Skip If" library="BuiltIn">
+<arg>'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='N'</arg>
+<doc>Skips the rest of the current test if the ``condition`` is True.</doc>
+<status status="PASS" starttime="20240801 18:15:08.669" endtime="20240801 18:15:08.671"/>
+</kw>
+<if>
+<branch type="IF" condition="'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='Y'">
+<kw name="Sub Prepare Data for F0_Login" library="PrepareData">
+<arg>${index}</arg>
+<status status="NOT RUN" starttime="20240801 18:15:08.672" endtime="20240801 18:15:08.672"/>
+</kw>
+<status status="NOT RUN" starttime="20240801 18:15:08.671" endtime="20240801 18:15:08.672"/>
+</branch>
+<status status="PASS" starttime="20240801 18:15:08.671" endtime="20240801 18:15:08.672"/>
+</if>
+<status status="PASS" starttime="20240801 18:15:08.669" endtime="20240801 18:15:08.672"/>
+</iter>
+<iter>
+<var name="${index}">{'TestCaseName': 'F0_Login_003', 'Flag': 'Y', 'Username': 'usertest02', 'Password': 'usertest02password'}</var>
+<kw name="Skip If" library="BuiltIn">
+<arg>'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='N'</arg>
+<doc>Skips the rest of the current test if the ``condition`` is True.</doc>
+<status status="PASS" starttime="20240801 18:15:08.673" endtime="20240801 18:15:08.674"/>
+</kw>
+<if>
+<branch type="IF" condition="'${index['TestCaseName']}'=='${TEST NAME}' and '${index['Flag']}'=='Y'">
+<kw name="Sub Prepare Data for F0_Login" library="PrepareData">
+<arg>${index}</arg>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${Username}</arg>
+<arg>${Testdata['Username']}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240801 18:15:08.678" level="INFO">${Username} = usertest02</msg>
+<status status="PASS" starttime="20240801 18:15:08.676" endtime="20240801 18:15:08.678"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${Password}</arg>
+<arg>${Testdata['Password']}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240801 18:15:08.681" level="INFO">${Password} = usertest02password</msg>
+<status status="PASS" starttime="20240801 18:15:08.679" endtime="20240801 18:15:08.681"/>
+</kw>
+<kw name="Generate Random Thai String" library="PrepareData">
+<kw name="Create List" library="BuiltIn">
+<var>${thai_characters}</var>
+<arg>ก</arg>
+<arg>ข</arg>
+<arg>ค</arg>
+<arg>ง</arg>
+<arg>จ</arg>
+<arg>ฉ</arg>
+<arg>ช</arg>
+<arg>ซ</arg>
+<arg>ฌ</arg>
+<arg>ญ</arg>
+<arg>ฎ</arg>
+<arg>ฐ</arg>
+<arg>ฑ</arg>
+<arg>ฒ</arg>
+<arg>ณ</arg>
+<arg>ด</arg>
+<arg>ต</arg>
+<arg>ถ</arg>
+<arg>ท</arg>
+<arg>ธ</arg>
+<arg>น</arg>
+<arg>บ</arg>
+<arg>ป</arg>
+<arg>ผ</arg>
+<arg>ฝ</arg>
+<arg>พ</arg>
+<arg>ฟ</arg>
+<arg>ภ</arg>
+<arg>ม</arg>
+<arg>ย</arg>
+<arg>ร</arg>
+<arg>ล</arg>
+<arg>ว</arg>
+<arg>ศ</arg>
+<arg>ษ</arg>
+<arg>ส</arg>
+<arg>ห</arg>
+<arg>ฬ</arg>
+<arg>อ</arg>
+<arg>ฮ</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20240801 18:15:08.683" level="INFO">${thai_characters} = ['ก', 'ข', 'ค', 'ง', 'จ', 'ฉ', 'ช', 'ซ', 'ฌ', 'ญ', 'ฎ', 'ฐ', 'ฑ', 'ฒ', 'ณ', 'ด', 'ต', 'ถ', 'ท', 'ธ', 'น', 'บ', 'ป', 'ผ', 'ฝ', 'พ', 'ฟ', 'ภ', 'ม', 'ย', 'ร', 'ล', 'ว', 'ศ', 'ษ', 'ส', 'ห', 'ฬ', 'อ', 'ฮ']</msg>
+<status status="PASS" starttime="20240801 18:15:08.682" endtime="20240801 18:15:08.683"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${random_string}</var>
+<arg>''.join(random.choice(${thai_characters}) for _ in range(${LENGTH}))</arg>
+<arg>modules=random</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240801 18:15:08.684" level="INFO">${random_string} = อกฝงภ</msg>
+<status status="PASS" starttime="20240801 18:15:08.683" endtime="20240801 18:15:08.684"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Random Thai String: ${random_string}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240801 18:15:08.684" level="INFO">Random Thai String: อกฝงภ</msg>
+<status status="PASS" starttime="20240801 18:15:08.684" endtime="20240801 18:15:08.684"/>
+</kw>
+<status status="PASS" starttime="20240801 18:15:08.682" endtime="20240801 18:15:08.684"/>
+</kw>
+<kw name="Generate Random Eng String" library="PrepareData">
+<kw name="Evaluate" library="BuiltIn">
+<var>${random_string}</var>
+<arg>''.join(random.choice('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') for _ in range(${LENGTH}))</arg>
+<arg>modules=random</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240801 18:15:08.685" level="INFO">${random_string} = JwFqv</msg>
+<status status="PASS" starttime="20240801 18:15:08.684" endtime="20240801 18:15:08.685"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Random String: ${random_string}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240801 18:15:08.685" level="INFO">Random String: JwFqv</msg>
+<status status="PASS" starttime="20240801 18:15:08.685" endtime="20240801 18:15:08.685"/>
+</kw>
+<status status="PASS" starttime="20240801 18:15:08.684" endtime="20240801 18:15:08.685"/>
+</kw>
+<kw name="Generate Data From Datetime" library="PrepareData">
+<kw name="Evaluate" library="BuiltIn">
+<var>${SetDatetime}</var>
+<arg>'${YYYYMMDD}'.format(dt=datetime.datetime.now())</arg>
+<arg>modules=datetime</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240801 18:15:08.685" level="INFO">${SetDatetime} = 20240801</msg>
+<status status="PASS" starttime="20240801 18:15:08.685" endtime="20240801 18:15:08.685"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Generate Data: ${SetDatetime}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240801 18:15:08.685" level="INFO">Generate Data: 20240801</msg>
+<status status="PASS" starttime="20240801 18:15:08.685" endtime="20240801 18:15:08.685"/>
+</kw>
+<status status="PASS" starttime="20240801 18:15:08.685" endtime="20240801 18:15:08.686"/>
+</kw>
+<status status="PASS" starttime="20240801 18:15:08.675" endtime="20240801 18:15:08.686"/>
+</kw>
+<status status="PASS" starttime="20240801 18:15:08.674" endtime="20240801 18:15:08.686"/>
+</branch>
+<status status="PASS" starttime="20240801 18:15:08.674" endtime="20240801 18:15:08.686"/>
+</if>
+<status status="PASS" starttime="20240801 18:15:08.672" endtime="20240801 18:15:08.686"/>
+</iter>
+<status status="PASS" starttime="20240801 18:15:08.665" endtime="20240801 18:15:08.686"/>
+</for>
+<kw name="Close Workbook" library="RPA.Excel.Files">
+<doc>Close the active workbook.</doc>
+<msg timestamp="20240801 18:15:08.686" level="INFO">Closing workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x0000023CF3E99960&gt;</msg>
+<status status="PASS" starttime="20240801 18:15:08.686" endtime="20240801 18:15:08.686"/>
+</kw>
+<status status="PASS" starttime="20240801 18:15:08.654" endtime="20240801 18:15:08.686"/>
+</kw>
+<kw name="Open Seminar" library="common">
+<arg>${WEB.${SITE}}</arg>
+<arg>${BROWSER}</arg>
+<kw name="Open Browser" library="Selenium2Library">
+<arg>${url}</arg>
+<arg>${run_browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240801 18:15:08.690" level="INFO">Opening browser 'chrome' to base url 'https://se.buu.ac.th/test_seminar/'.</msg>
+<status status="PASS" starttime="20240801 18:15:08.689" endtime="20240801 18:15:12.652"/>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240801 18:15:12.652" endtime="20240801 18:15:12.771"/>
+</kw>
+<status status="PASS" starttime="20240801 18:15:08.686" endtime="20240801 18:15:12.771"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${lbl_Login}</arg>
+<arg>${wait_state_timeout}</arg>
+<arg>Failed, Automated Can't visible Element.</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240801 18:15:12.771" endtime="20240801 18:15:12.794"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${txt_unidentifier}</arg>
+<arg>${wait_state_timeout}</arg>
+<arg>Failed, Automated Can't visible Element.</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240801 18:15:12.795" endtime="20240801 18:15:12.819"/>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<arg>${txt_unidentifier}</arg>
+<arg>${Username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240801 18:15:12.820" level="INFO">Typing text 'usertest02' into text field 'xpath=//input[@name="username"]'.</msg>
+<status status="PASS" starttime="20240801 18:15:12.819" endtime="20240801 18:15:12.909"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${txt_pwidentifier}</arg>
+<arg>${wait_state_timeout}</arg>
+<arg>Failed, Automated Can't visible Element.</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240801 18:15:12.910" endtime="20240801 18:15:12.929"/>
+</kw>
+<kw name="Input Password" library="Selenium2Library">
+<arg>${txt_pwidentifier}</arg>
+<arg>${Password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20240801 18:15:12.930" level="INFO">Typing password into text field 'xpath=//input[@name="password"]'.</msg>
+<msg timestamp="20240801 18:15:12.962" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20240801 18:15:12.999" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20240801 18:15:12.930" endtime="20240801 18:15:12.999"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${btn_login}</arg>
+<arg>${wait_state_timeout}</arg>
+<arg>Failed, Automated Can't visible Element.</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240801 18:15:13.000" endtime="20240801 18:15:13.018"/>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<arg>${btn_login}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240801 18:15:13.019" level="INFO">Clicking element 'xpath=//input[@type="submit"]'.</msg>
+<status status="PASS" starttime="20240801 18:15:13.019" endtime="20240801 18:15:14.793"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${lbl_menu}</arg>
+<arg>${wait_state_timeout}</arg>
+<arg>Failed, Automated Can't Login.</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240801 18:15:14.795" endtime="20240801 18:15:14.823"/>
+</kw>
+<kw name="Close Browser Seminar" library="common" type="TEARDOWN">
+<kw name="Close Browser" library="Selenium2Library">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20240801 18:15:14.824" endtime="20240801 18:15:17.367"/>
+</kw>
+<status status="PASS" starttime="20240801 18:15:14.823" endtime="20240801 18:15:17.367"/>
+</kw>
+<status status="PASS" starttime="20240801 18:15:08.654" endtime="20240801 18:15:17.368"/>
+</test>
+<status status="PASS" starttime="20240801 18:14:49.786" endtime="20240801 18:15:17.371"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="3" fail="0" skip="0" id="s1" name="F0 Login excel">F0 Login excel</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

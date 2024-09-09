@@ -1,0 +1,9 @@
+SITE: IOT
+BROWSER: chrome
+wait_state_timeout: 20s
+LENGTH: 5
+YYYYMMDD: '{dt:%Y}{dt:%m}{dt:%d}'
+
+WEB:
+  IOT: https://se.buu.ac.th/test_seminar/
+  STG: https://se.buu.ac.th/test_seminar/

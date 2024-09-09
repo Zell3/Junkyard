@@ -1,0 +1,11 @@
+F0_Login_001:
+  Username: admin
+  Password: adminpassword
+
+F0_Login_002:
+  Username: usertest01
+  Password: usertest01password
+
+F0_Login_003:
+  Username: usertest02
+  Password: usertest02password

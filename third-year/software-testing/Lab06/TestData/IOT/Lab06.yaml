@@ -1,0 +1,7 @@
+Add users:
+  name: kunanont
+  job: student
+
+Update users:
+  name: kunanont
+  job: teacher

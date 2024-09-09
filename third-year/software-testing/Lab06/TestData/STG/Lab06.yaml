@@ -1,0 +1,81 @@
+Obtain Token:
+  PathAuth: auth
+  USERNAME: admin
+  PASSWORD: password123
+
+Get All Bookings IDs:
+  PathGetBooking: booking
+  FIRSTNAME: Anthony
+  LASTNAME: ODonnell
+
+Add New Booking:
+  PathAuth: auth
+  PathAddBooking: booking
+  PathDeleteBooking: booking
+  USERNAME: admin
+  PASSWORD: password123
+  FIRSTNAME: Anthony
+  LASTNAME: ODonnell
+  TOTALPRICE: 500
+  DEPOSITPAID: true
+  CHECKIN: '2024-08-30'
+  CHECKOUT: '2024-09-10'
+  ADDITIONALNEEDS: Clearly Defined Requirements
+
+Validate New Booking Details:
+  PathAuth: auth
+  PathAddBooking: booking
+  PathPartialBooking: booking
+  PathGetBooking: booking
+  PathDeleteBooking: booking
+  FIRSTNAME: Anthony
+  LASTNAME: ODonnell
+  TOTALPRICE: 500
+  DEPOSITPAID: true
+  CHECKIN: '2024-08-30'
+  CHECKOUT: '2024-09-10'
+  ADDITIONALNEEDS: Clearly Defined Requirements
+
+Partial Update New Booking:
+  PathAuth: auth
+  PathAddBooking: booking
+  PathPartialBooking: booking
+  PathDeleteBooking: booking
+  USERNAME: admin
+  PASSWORD: password123
+  FIRSTNAME: Anthony
+  LASTNAME: ODonnell
+  TOTALPRICE: 500
+  DEPOSITPAID: true
+  CHECKIN: '2024-08-30'
+  CHECKOUT: '2024-09-10'
+  ADDITIONALNEEDS: Clearly Defined Requirements
+
+Update New Booking:
+  PathAuth: auth
+  PathAddBooking: booking
+  PathUpdateBooking: booking
+  PathDeleteBooking: booking
+  USERNAME: admin
+  PASSWORD: password123
+  FIRSTNAME: Anthony
+  LASTNAME: ODonnell
+  TOTALPRICE: 0
+  DEPOSITPAID: true
+  CHECKIN: '2024-07-30'
+  CHECKOUT: '2024-08-10'
+  ADDITIONALNEEDS: Clearly Defined Requirements
+
+Delete Bookings:
+  PathAuth: auth
+  USERNAME: admin
+  PASSWORD: password123
+  PathAddBooking: booking
+  PathDeleteBooking: booking
+  FIRSTNAME: Anthony
+  LASTNAME: ODonnell
+  TOTALPRICE: 0
+  DEPOSITPAID: true
+  CHECKIN: '2024-07-30'
+  CHECKOUT: '2024-08-10'
+  ADDITIONALNEEDS: Clearly Defined Requirements
