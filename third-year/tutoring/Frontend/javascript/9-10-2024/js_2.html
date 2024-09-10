@@ -1,0 +1,94 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<h1> JavaScript 2.1 : 3 points </h1>
+- คลิกที่ปุ่ม "คลิกที่นี่ JS 2.1" จะเปลี่ยนข้อความ "xxx-xxxxxxx" เป็นเบอร์โทรที่ซ่อนอยู่ <br>
+- และเมื่อคลิกปุ่มเดิมอีกครั้ง จะเปลี่ยนเบอร์โทร กลับเป็นข้อความ "xxx-xxxxxxx" เช่นเดิม <br><br>
+
+
+<p style="display:none" id="ans1">088-9999999</p>
+<button class="btn btn-primary" id="btn2_1">คลิกที่นี่ JS 2.1</button>
+<p id="str1" name="str1">xxx-xxxxxxx</p>
+
+<!-- Coding JavaScript 2.1 here!!!! -->
+<script>
+	var button = document.querySelector('#btn2_1');
+	button.addEventListener("click", function(){
+		if ($('#str1').text() == "xxx-xxxxxxx") {
+			$('#str1').text($('#ans1').text());
+		} else {
+			$('#str1').text("xxx-xxxxxxx");
+		}
+  });
+</script>
+<!-- Coding JavaScript 2.1 here!!!! -->
+<hr>
+
+
+<h1> JavaScript 2.2 : 4 points </h1>
+- คลิกที่ปุ่ม "คลิกที่นี่ JS 2.2" จะแสดงวันที่ปัจจุบัน ในรูปแบบ วัน เดือน ปี (พศ) ตามที่โจทย์กำหนด <br><br>
+
+
+<button class="btn btn-primary" id="btn2_2">คลิกที่นี่ JS 2.2</button>
+<p id="str2" name="str2">ว/ด/ป</p>
+
+<!-- Coding JavaScript 2.2 here!!!! -->
+<script>
+	var button = document.querySelector('#btn2_2');
+	button.addEventListener("click", function(){
+		let today, date, month, year;
+		today = new Date();
+		const result = today.toLocaleDateString('th-TH', {
+  		year: 'numeric',
+  		month: 'long',
+  		day: 'numeric',
+		})
+		$('#str2').text(`วันที่ ${result}`);
+	});
+</script>
+<!-- Coding JavaScript 2.2 here!!!! -->
+<hr>
+
+
+
+
+<h1> JavaScript 2.3 : 3 points </h1>
+- คลิกที่ปุ่ม "คลิกที่นี่ JS 2.3" ข้อความที่กำหนดจะค่อยๆ สไลด์หายไป และกลับมาใหม่เมื่อคลิกปุ่มเดิมอีกครั้ง <br><br>
+
+<div id="ans3" class="alert alert-dismissable alert-danger">
+	<strong>ระวัง!</strong> เนื้อหาส่วนนี้จะค่อยๆ สไลด์หายไป และกลับมาใหม่. <br>
+	<strong>ระวัง!</strong> เนื้อหาส่วนนี้จะค่อยๆ สไลด์หายไป และกลับมาใหม่.
+</div><br>
+
+<button class="btn btn-primary" id="btn2_3" onclick="javascript_lev2_3()">คลิกที่นี่ JS 2.3</button>
+
+<!-- Coding JavaScript 2.3 here!!!! -->
+ <script>
+	function javascript_lev2_3() {
+		$('#ans3').slideToggle();
+	}
+</script>
+<!-- Coding JavaScript 2.3 here!!!! -->
+<hr>
+
+
+
+
+<h1> JavaScript 2.4 : 2 points </h1>
+- คลิกที่ปุ่ม "คลิกที่นี่ JS 2.4" จะทำการตรวจสอบว่า checkbox ถูกเลือกหรือไม่ และแสดงข้อความแจ้งเตือน <br>
+
+<input type="checkbox" name="ans4" id="ans4" checked value="แยมโรล"><label for="ans4">แยมโรล</label> <br><br>
+<button class="btn btn-primary" id="btn2_4" onclick="javascript_lev2_4()">คลิกที่นี่ JS 2.4</button>
+
+<!-- Coding JavaScript 2.4 here!!!! -->
+<script>
+	function javascript_lev2_4() {
+		var checkbox = document.querySelector('#ans4');
+		if (checkbox.checked) {
+			alert("คุณเลือก " + checkbox.value);
+		} else {
+			alert("คุณไม่เลือก " + checkbox.value);
+		}
+	}
+</script>
+<!-- Coding JavaScript 2.4 here!!!! -->
+<hr>

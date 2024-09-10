@@ -1,0 +1,31 @@
+<h1> JavaScript 1.1 : 1 point  </h1>
+- คลิกที่ปุ่ม "คลิกที่นี่ JS1.1" จะแสดงข้อความ My name is และตามด้วยชื่อของตนเอง <br><br>
+
+<button class="btn btn-primary"  id="btn1_1" >คลิกที่นี่ JS1.1</button>
+
+<!-- Coding JavaScript 1.1 here!!!! -->
+<script>
+  // let button = document.getElementById('btn1_1');
+  var button = document.querySelector('#btn1_1');
+  button.addEventListener("click", function(){
+    alert("My name is 'Kunanont'");
+  });
+</script>
+<!-- Coding JavaScript 1.1 here!!!! -->
+<hr>
+
+
+<h1> JavaScript 1.2 : 2 points  </h1>
+- คลิกที่ปุ่ม "คลิกที่นี่ JS1.2" จะแสดงกล่องข้อความให้บันทึกข้อความ และแสดงจำนวนตัวอักษรในข้อความนั้น <br><br>
+
+<button class="btn btn-primary"  id="btn1_2"  >คลิกที่นี่ JS1.2</button>
+<!-- Coding JavaScript 1.2 here!!!! -->
+<script>
+  // let button = document.getElementById('btn1_1');
+  var button = document.querySelector('#btn1_2');
+  button.addEventListener("click", function(){
+    let str = prompt("Please enter your words", "");
+    alert("จำนวน Character ของ " + str + " = " + str.length);
+  });
+</script>
+<!-- Coding JavaScript 1.2 here!!!! -->

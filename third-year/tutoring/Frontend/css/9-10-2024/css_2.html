@@ -1,0 +1,80 @@
+<h1>  CSS 2.1 : 4 points </h1>
+- ทุก block กว้าง : 100 px, ยาว : 100 px <br>
+- ทุก block ขอบหนา : 3 px (สีดำ) <br>
+- ระยะขอบทุกด้านของ block ที่มีชนิด typeA : 50px <br>
+- เฉพาะ block4 เพิ่มการเว้นระยะขอบด้านซ้ายอีก : 100px <br><br>
+
+<div>
+      <div id="block1" class="block typeA" style="display: inline-block">block1 typeA</div>
+      <div id="block2" class="block typeB" style="display: inline-block">block2 typeB</div>
+</div>
+<div>
+      <div id="block3" class="block typeA" style="display: inline-block;">block3 typeA</div>
+      <div id="block4" class="block typeB" style="display: inline-block;">block4 typeB</div>
+</div>
+
+<!-- Coding CSS 2.1 here!!!! -->
+<style>
+.block {
+      border: 3px solid black;
+      width: 100px;
+      height: 100px;
+}
+.typeA {
+      margin: 50px;
+}
+#block4 {
+      margin-left: 100px;
+}
+</style>
+<!-- Coding CSS 2.1 here!!!! -->
+<hr>
+
+
+
+<h1> CSS 2.2 : 4 points </h1>
+- My content 1 ขอบหนาชนิดขอบเต็ม : 5 px (สีแดง) <br>
+- My content 1 มีระยะห่างระหว่างเนื้อหา และขอบทุกด้าน  : 50 px <br>
+- My content 2 ขอบหนาชนิดขอบเส้นปะ : 3 px (สีน้ำเงิน) <br>
+- My content 2 มีระยะห่างเนื้อหาระหว่างเนื้อหาและขอบด้านซ้าย : 80 px <br><br>
+
+
+<div id='box1'>My content 1 </div>
+<br>
+<div id='box2'>My content 2 </div>
+
+<!-- Coding CSS 2.2 here!!!! -->
+<style>
+#box1 {
+      border: 5px solid red;
+      padding: 50px;
+}
+#box2 {
+      border: 5px dashed blue;
+      padding-left: 80px;
+}
+</style>
+<!-- Coding CSS 2.2 here!!!! -->
+<hr>
+
+
+
+
+<h1> CSS 2.3 : 4 points </h1>
+- my shape กว้าง : 100 px, ยาว : 100 px <br>
+- my shape เอียง : 45 องศา <br>
+- my shape ไล่ระดับสีระหว่าง สี #eceff1 และ สี #03a9f4 <br><br><br>
+
+
+<div id="shape">my shape </div>
+
+<!-- Coding CSS 2.3 here!!!! -->
+<style>
+#shape {
+      width: 100px;
+      height: 100px;
+      transform: rotate(45deg);
+      background: linear-gradient(rgba(236,239,241,1) 0%, rgba(3,169,244,1) 100%);
+}
+</style>
+<!-- Coding CSS 2.3 here!!!! -->
